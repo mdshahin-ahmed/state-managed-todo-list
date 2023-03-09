@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
+import EditList from "./EditList";
 
-const List = ({ list, index, handleDelete }) => {
-  console.log(index);
+const List = ({ list, index, handleDelete, handleEdit }) => {
+  const [showEdit, setShowEdit] = useState(false);
+  const handleEditClick = () => {
+    setShowEdit(!showEdit);
+  };
+
+  let content = <div>{list}</div>;
+  if (showEdit) {
+    content = (
+      <EditList
+        handleEditClick={handleEditClick}
+        index={index}
+        list={list}
+        handleEdit={handleEdit}
+      />
+    );
+  }
+
   return (
-    <div>
-      <div>{list}</div>
+    <div className="listWrap">
+      {content}
       <div>
-        <AiOutlineEdit />
-        <AiOutlineDelete onClick={() => handleDelete(index)} />
+        <AiOutlineEdit onClick={handleEditClick} className="edit" />
+        <AiOutlineDelete
+          className="delete"
+          onClick={() => handleDelete(index)}
+        />
       </div>
     </div>
   );

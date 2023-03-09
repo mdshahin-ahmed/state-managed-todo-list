@@ -1,0 +1,53 @@
+body {
+  background-color: rgb(45, 212, 241);
+}
+.todoWrap h1 {
+  margin-top: 0;
+}
+.todoWrap {
+  width: 40vw;
+  height: auto;
+  margin: 40px auto;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+}
+.todoTextWrap {
+  padding: 20px;
+}
+.inputField {
+  display: flex;
+  justify-content: center;
+}
+.inputField button {
+  padding: 10px 15px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.listWrap {
+  margin: 10px 30px;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(190, 190, 190);
+  font-size: 1.5rem;
+}
+.edit,
+.delete {
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.delete {
+  margin-left: 5px;
+}
+.delete:hover {
+  background-color: rgb(240, 59, 59);
+  color: white;
+}
+.edit:hover {
+  background-color: rgb(45, 212, 241);
+  color: white;
+}

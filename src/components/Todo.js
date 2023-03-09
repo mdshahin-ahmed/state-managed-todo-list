@@ -23,6 +23,11 @@ const Todo = () => {
       return;
     }
     setData([...data, inputValue]);
+
+    // setData([...data, { name: inputValue, id: data.index }]);
+
+    // setData({...data,{value:inputValue,id:1}});
+
     setInputValue("");
   };
 
@@ -31,24 +36,36 @@ const Todo = () => {
     setData(newData);
   };
 
+  const handleEdit = (id, newData) => {
+    const oldData = data.filter((item, index) => index !== id);
+    setData([...oldData, newData]);
+  };
+
   return (
-    <div>
-      <h1>Todo List</h1>
-      <div>
-        <input
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue || ""}
-          type="text"
-        />
-        <button onClick={handleAdd}>Add to list</button>
-        {data.map((list, index) => (
-          <List
-            key={index}
-            index={index}
-            handleDelete={handleDelete}
-            list={list}
-          ></List>
-        ))}
+    <div className="todoWrap">
+      <div className="todoTextWrap">
+        <h1>Todo List</h1>
+        <div>
+          <div className="inputField">
+            <input
+              onChange={(e) => setInputValue(e.target.value)}
+              value={inputValue || ""}
+              type="text"
+            />
+            <button onClick={handleAdd}>Add to list</button>
+          </div>
+          <div>
+            {data.map((list, index) => (
+              <List
+                key={index}
+                index={index}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
+                list={list}
+              ></List>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
