@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Header from "./Header";
 import List from "./List";
 
 const fetchLocalStorageData = () => {
@@ -17,6 +18,7 @@ const Todo = () => {
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(data));
   }, [data]);
+  // console.log(data);
 
   const handleAdd = () => {
     if (!inputValue) {
@@ -24,9 +26,10 @@ const Todo = () => {
     }
     setData([...data, inputValue]);
 
-    // setData([...data, { name: inputValue, id: data.index }]);
+    // setData([...data, { value: inputValue, id: data.length }]);
 
     // setData({...data,{value:inputValue,id:1}});
+    // setData({ ...data, info: { value: inputValue, id: 1 } });
 
     setInputValue("");
   };
@@ -42,28 +45,31 @@ const Todo = () => {
   };
 
   return (
-    <div className="todoWrap">
-      <div className="todoTextWrap">
-        <h1>Todo List</h1>
-        <div>
-          <div className="inputField">
-            <input
-              onChange={(e) => setInputValue(e.target.value)}
-              value={inputValue || ""}
-              type="text"
-            />
-            <button onClick={handleAdd}>Add to list</button>
-          </div>
+    <div className="todoPage">
+      <Header></Header>
+      <div className="todoWrap">
+        <div className="todoTextWrap">
+          <h1>Todo List</h1>
           <div>
-            {data.map((list, index) => (
-              <List
-                key={index}
-                index={index}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-                list={list}
-              ></List>
-            ))}
+            <div className="inputField">
+              <input
+                onChange={(e) => setInputValue(e.target.value)}
+                value={inputValue || ""}
+                type="text"
+              />
+              <button onClick={handleAdd}>Add to list</button>
+            </div>
+            <div>
+              {data.map((list, index) => (
+                <List
+                  key={index}
+                  index={index}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                  list={list}
+                ></List>
+              ))}
+            </div>
           </div>
         </div>
       </div>

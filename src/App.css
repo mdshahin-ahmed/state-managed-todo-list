@@ -1,5 +1,6 @@
-body {
+.todoPage {
   background-color: rgb(45, 212, 241);
+  height: 100vh;
 }
 .todoWrap h1 {
   margin-top: 0;
